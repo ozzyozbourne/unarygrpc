@@ -10,19 +10,19 @@ clean_proto:
 	rm ${PROTO_OUT}/*.pb.go
 
 
-clean_output:
-	rm buildout/*
+clean_server:
+	rm buildout/server
+
+clean_client:
+	rm buildout/client
 
 
-build:
-	go build -o buildout/client ./client/main.go
+build_server:
 	go build -o buildout/server ./server/main.go
 
-
-run:
-	buildout/./server
-	buildout/./client
+build_client:
+	go build -o buildout/client ./client/main.go
 
 
-all: clean_output clean_proto generate build run
+all:  clean_proto clean_client clean_server generate build_client build_server
 
