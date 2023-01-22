@@ -20,7 +20,8 @@ build:
 
 
 run:
-	./gogrpc
+	buildout/./server
+	buildout/./client
 
 
 all: clean_output clean_proto generate build run
