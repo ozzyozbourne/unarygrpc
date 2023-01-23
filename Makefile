@@ -18,10 +18,10 @@ clean_client:
 
 
 build_server:
-	go build -o buildout/server ./server/main.go
+	go build -o buildout/server ./server
 
 build_client:
-	go build -o buildout/client ./client/main.go
+	go build -o buildout/client ./client
 
 
 all:  clean_proto clean_client clean_server generate build_client build_server

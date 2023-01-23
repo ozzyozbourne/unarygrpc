@@ -1,6 +1,7 @@
 package main
 
 import (
+	pb "github/ozzyozbourne/gogrpc/protout"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"log"
@@ -22,4 +23,7 @@ func main() {
 		}
 	}(con)
 	log.Println("CONNECTED")
+	c := pb.NewGreetServiceClient(con)
+
+	doGreet(c)
 }
