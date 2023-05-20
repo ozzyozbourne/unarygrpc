@@ -13,32 +13,27 @@ clean_proto:
 clean_server:
 	rm buildout/server_linux
 	rm buildout/server_windows
-
+	rm buildout/server_mac
 
 
 clean_client:
 	rm buildout/client_linux
 	rm buildout/client_windows
+	rm buildout/client_mac
 
 
-
-build_server_linux:
+build_server:
 	GOOS=linux GOARCH=amd64 go build -o buildout/server_linux ./server
-
-
-build_server_windows:
-	GOOS=windows GOARCH=amd64 go build -o buildout/server_windows ./server
+	GOOS=darwin GOARCH=amd64 go build -o buildout/server_mac ./server
+	GOOS=windows GOARCH=amd64 go build -o buildout/server_windows.exe ./server
 
 
 
-build_client_linux:
+build_client:
 	GOOS=linux GOARCH=amd64 go build -o buildout/client_linux ./client
+	GOOS=darwin GOARCH=amd64 go build -o buildout/client_mac ./client
+	GOOS=windows GOARCH=amd64 go build -o buildout/client_windows.exe ./client
 
 
-
-build_client_windows:
-	GOOS=windows GOARCH=amd64 go build -o buildout/client_windows ./client
-
-
-all:  clean_proto  clean_server generate build_server_linux build_server_windows build_client_linux build_client_windows
+all:  clean_proto clean_server clean_client generate build_server build_client
 
